@@ -3,6 +3,8 @@
 // ===============================
 document.addEventListener('DOMContentLoaded', () => {
 
+    console.log("Firebase DB:", window.db);
+
     // ---------------------------
     // Theme Toggle Logic
     // ---------------------------
