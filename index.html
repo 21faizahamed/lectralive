@@ -228,7 +228,41 @@
         <p>© 2026 lectralive. Building inclusive classrooms together.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- connection to db using js -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            onSnapshot,
+            query,
+            orderBy
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9CoVWGcQMZm0g9i8p385VLYimqq1vpHk",
+            authDomain: "lectralive.firebaseapp.com",
+            projectId: "lectralive",
+            storageBucket: "lectralive.firebasestorage.app",
+            messagingSenderId: "145968401982",
+            appId: "1:145968401982:web:d10f4ba3d32fb3f7de4b6f",
+            measurementId: "G-MQWXDBFE9S"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Make db global so script.js can use it
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.onSnapshot = onSnapshot;
+        window.query = query;
+        window.orderBy = orderBy;
+    </script>
+
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>
