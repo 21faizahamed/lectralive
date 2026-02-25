@@ -135,6 +135,10 @@ function switchView(viewId) {
 }
 
 
+// Make functions available globally for HTML onclick
+window.switchView = switchView;
+window.submitQuestion = submitQuestion;
+
 // ===============================
 // SUBMIT QUESTION TO FIRESTORE
 // ===============================
