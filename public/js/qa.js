@@ -19,17 +19,16 @@ export function listenToQuestions(roomCode, feedEl, onCountChange) {
     return onSnapshot(q, (snapshot) => {
         feedEl.innerHTML = "";
 
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-
-            const msgDiv = document.createElement("div");
-            msgDiv.className = "qa-message";
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
 
             const ts = data.createdAt?.toDate ? data.createdAt.toDate() : null;
             const time = ts
                 ? ts.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
                 : "";
 
+            const msgDiv = document.createElement("div");
+            msgDiv.className = "qa-message";
             msgDiv.innerHTML = `
         <div class="qa-meta">
           <span class="qa-author">${escapeHtml(data.author ?? "Anonymous")}</span>
@@ -43,19 +42,19 @@ export function listenToQuestions(roomCode, feedEl, onCountChange) {
 
         feedEl.scrollTop = feedEl.scrollHeight;
 
-        if (typeof onCountChange === "function") {
-            onCountChange(snapshot.size);
-        }
+        if (typeof onCountChange === "function") onCountChange(snapshot.size);
     });
 }
 
-export async function submitQuestion(roomCode, text, author) {
+export async function submitQuestion(roomCode, text, author, authorUid, authorRole) {
     const trimmed = text.trim();
     if (!trimmed) return;
 
     await addDoc(collection(db, "rooms", roomCode, "questions"), {
         text: trimmed,
-        author,
+        author,                 // displayed name ("Anonymous" or displayName)
+        authorUid: authorUid ?? null,
+        authorRole: authorRole ?? null, // "student" or "teacher"
         createdAt: serverTimestamp(),
     });
 }
