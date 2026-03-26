@@ -2,13 +2,13 @@ import { initThemeToggle } from "./ui-theme.js";
 import { initAuthTabs } from "./ui-auth-tabs.js";
 import { showError } from "./utils.js";
 import { registerUser, loginUser, logoutUser, onAuth } from "./auth.js";
+import { getUserProfile } from "./users.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
     initAuthTabs();
 
-    const roomInput = document.getElementById("room-code-input");
-    const joinBtn = document.getElementById("join-btn");
+
 
     const loginForm = document.getElementById("login-form");
     const loginEmail = document.getElementById("login-email");
@@ -24,20 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navSignoutBtn = document.getElementById("nav-signout-btn");
 
-    const goToRoom = () => {
-        const roomCode = (roomInput?.value || "").trim() || "demo-room";
-        window.location.href = `/classroom.html?room=${encodeURIComponent(roomCode)}`;
-    };
-
-    joinBtn?.addEventListener("click", goToRoom);
-    roomInput?.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") goToRoom();
-    });
-
-    // Auth UI state
-    onAuth((user) => {
+    // Auth UI state & Routing
+    onAuth(async (user) => {
         if (user) {
             navSignoutBtn.style.display = "inline-flex";
+            try {
+                const profile = await getUserProfile(user.uid);
+                if (profile?.role === "teacher") {
+                    window.location.href = "teacher_dashboard.html";
+                } else {
+                    window.location.href = "student_dashboard.html";
+                }
+            } catch (err) {
+                console.error("Error fetching user profile", err);
+            }
         } else {
             navSignoutBtn.style.display = "none";
         }
@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 email: loginEmail.value.trim(),
                 password: loginPassword.value,
             });
+            // redirection is handled by onAuth
 
-            goToRoom();
         } catch (err) {
             showError(loginError, friendlyAuthError(err));
         }
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 displayName: registerDisplayName.value.trim(),
                 role: registerRole.value, // student | teacher
             });
+            // redirection is handled by onAuth
 
-            goToRoom();
         } catch (err) {
             showError(registerError, friendlyAuthError(err));
         }
@@ -85,11 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function friendlyAuthError(err) {
+    console.error("Auth Error:", err);
     const code = err?.code || "";
     if (code.includes("auth/email-already-in-use")) return "That email is already registered. Try logging in.";
     if (code.includes("auth/invalid-email")) return "That email address is not valid.";
     if (code.includes("auth/weak-password")) return "Password is too weak. Use at least 6 characters.";
     if (code.includes("auth/invalid-credential") || code.includes("auth/wrong-password")) return "Incorrect email or password.";
     if (code.includes("auth/user-not-found")) return "No account found for that email.";
-    return "Something went wrong. Please try again.";
+    return "Something went wrong: " + (err?.message || "Check the console for details.");
 }

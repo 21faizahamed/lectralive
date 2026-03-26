@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const feed = document.getElementById("qa-feed");
     const input = document.getElementById("qa-input");
-    const anonToggle = document.getElementById("anon-toggle");
     const submitBtn = document.getElementById("submit-btn");
     const signoutBtn = document.getElementById("signout-btn");
 
@@ -25,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     signoutBtn?.addEventListener("click", async () => {
         await logoutUser();
-        window.location.href = "/";
+        window.location.href = "index.html";
     });
 
     // Require auth
     onAuth(async (user) => {
         if (!user) {
-            window.location.href = "/";
+            window.location.href = "index.html";
             return;
         }
 
@@ -63,8 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const text = input.value;
             if (!text.trim()) return;
 
-            const isAnon = anonToggle?.checked ?? true;
-            const authorToShow = isAnon ? "Anonymous" : displayName;
+            const authorToShow = displayName;
 
             await submitQuestion(roomCode, text, authorToShow, user.uid, role);
 

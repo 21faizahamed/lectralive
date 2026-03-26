@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lectralive - Teacher Dashboard</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%234f46e5'/><path d='M12 6C13.1046 6 14 6.89543 14 8C14 9.10457 13.1046 10 12 10C10.8954 10 10 9.10457 10 8C10 6.89543 10.8954 6 12 6Z' fill='white'/><path d='M12 11C8.68629 11 6 13.6863 6 17V18H18V17C18 13.6863 15.3137 11 12 11Z' fill='white'/></svg>" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="6" fill="var(--primary)" />
+                    <path
+                        d="M12 6C13.1046 6 14 6.89543 14 8C14 9.10457 13.1046 10 12 10C10.8954 10 10 9.10457 10 8C10 6.89543 10.8954 6 12 6Z"
+                        fill="white" />
+                    <path d="M12 11C8.68629 11 6 13.6863 6 17V18H18V17C18 13.6863 15.3137 11 12 11Z" fill="white" />
+                </svg>
+                <span>lectralive</span>
+            </div>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <button class="btn btn-outline" type="button" id="nav-signout-btn" style="display: inline-flex">
+                    Sign out
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="view active" id="dashboard-view">
+        <div class="landing-container"
+            style="justify-content: center; text-align: center; max-width: 600px; margin: 0 auto; padding-top: 10vh;">
+            <div class="hero" style="width: 100%; margin-right: 0;">
+                <h1 class="hero-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    Welcome, Professor <span class="highlight" id="dashboard-name"></span>!
+                </h1>
+                <p class="hero-subtitle">
+                    Create a new classroom to start engaging with your students.
+                </p>
+
+                <div style="margin: 2rem auto;">
+                    <button class="btn btn-primary" id="create-room-btn" type="button"
+                        style="padding: 1rem 2rem; font-size: 1.1rem;">
+                        Create New Classroom
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left: 0.5rem;">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                    <p id="create-error" style="color: #ef4444; margin-top: 1rem; display: none;"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bottom-bar">
+        <p>© 2026 lectralive. Building inclusive classrooms together.</p>
+    </footer>
+
+    <script type="module" src="js/teacher_dash.js"></script>
+</body>
+
+</html>
