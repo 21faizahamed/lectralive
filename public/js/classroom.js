@@ -3,6 +3,7 @@ import { getRoomCodeFromUrl } from "./utils.js";
 import { onAuth, logoutUser } from "./auth.js";
 import { getUserProfile } from "./users.js";
 import { listenToQuestions, submitQuestion } from "./qa.js";
+import { listenToCaptions, startBroadcasting, stopBroadcasting } from "./captions.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
@@ -18,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("qa-input");
     const submitBtn = document.getElementById("submit-btn");
     const signoutBtn = document.getElementById("signout-btn");
+    const captionsArea = document.getElementById("captions-area");
+    const broadcastBtn = document.getElementById("broadcast-btn");
 
     if (classTitle) classTitle.textContent = `Room: ${roomCode}`;
     if (connectionStatus) connectionStatus.textContent = "Checking login…";
@@ -47,6 +50,46 @@ document.addEventListener("DOMContentLoaded", () => {
         if (feed) {
             listenToQuestions(roomCode, feed, (count) => {
                 if (activeCount) activeCount.textContent = `${count} Active`;
+            });
+        }
+        
+        // Start Captions listener
+        if (captionsArea) {
+            listenToCaptions(roomCode, captionsArea);
+        }
+
+        if (role === "teacher" && broadcastBtn) {
+            broadcastBtn.style.display = "flex";
+            
+            let isBroadcasting = false;
+            broadcastBtn.addEventListener("click", async () => {
+                if (!isBroadcasting) {
+                    broadcastBtn.textContent = "Connecting...";
+                    broadcastBtn.disabled = true;
+                    try {
+                        await startBroadcasting(roomCode);
+                        isBroadcasting = true;
+                        broadcastBtn.innerHTML = `
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+                          Stop Broadcast
+                        `;
+                        broadcastBtn.style.background = "#4f46e5";
+                        broadcastBtn.style.borderColor = "#4338ca";
+                    } catch (err) {
+                        alert("Failed to start broadcasting.");
+                    } finally {
+                        broadcastBtn.disabled = false;
+                    }
+                } else {
+                    await stopBroadcasting();
+                    isBroadcasting = false;
+                    broadcastBtn.innerHTML = `
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                      Start Broadcast
+                    `;
+                    broadcastBtn.style.background = "#e11d48";
+                    broadcastBtn.style.borderColor = "#be123c";
+                }
             });
         }
 
