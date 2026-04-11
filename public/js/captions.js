@@ -21,19 +21,35 @@ let isBroadcasting = false;
 
 // Listens to Firestore for captions to show on screen
 export function listenToCaptions(roomCode, captionsArea) {
-    // We'll separate complete sentences (finals) and the live typing (partial)
     let captionsList = document.createElement('div');
     captionsList.className = 'captions-list';
     
+    let placeholder = document.createElement('div');
+    placeholder.className = 'placeholder-text';
+    placeholder.textContent = "Waiting for captions...";
+    placeholder.style.marginTop = '1rem';
+    
     let livePartial = document.createElement('div');
-    livePartial.className = 'live-partial placeholder-text';
+    livePartial.className = 'live-partial';
     livePartial.style.color = '#888';
     livePartial.style.fontStyle = 'italic';
     livePartial.style.marginTop = '1rem';
     
     captionsArea.innerHTML = '';
     captionsArea.appendChild(captionsList);
+    captionsArea.appendChild(placeholder);
     captionsArea.appendChild(livePartial);
+
+    let hasFinals = false;
+    let hasPartial = false;
+
+    const updatePlaceholder = () => {
+        if (hasFinals || hasPartial) {
+            placeholder.classList.add('hidden-placeholder');
+        } else {
+            placeholder.classList.remove('hidden-placeholder');
+        }
+    };
 
     const q = query(
         collection(db, "rooms", roomCode, "captions"),
@@ -42,6 +58,7 @@ export function listenToCaptions(roomCode, captionsArea) {
 
     const unsubFinals = onSnapshot(q, (snapshot) => {
         captionsList.innerHTML = '';
+        hasFinals = !snapshot.empty;
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
             const p = document.createElement('p');
@@ -49,17 +66,19 @@ export function listenToCaptions(roomCode, captionsArea) {
             p.style.marginBottom = '0.5rem';
             captionsList.appendChild(p);
         });
+        updatePlaceholder();
         captionsArea.scrollTop = captionsArea.scrollHeight;
     });
 
     const unsubPartial = onSnapshot(doc(db, "rooms", roomCode, "live_caption", "current"), (docSnap) => {
         if (docSnap.exists() && docSnap.data().text) {
             livePartial.textContent = docSnap.data().text;
-            livePartial.classList.remove('placeholder-text');
+            hasPartial = true;
         } else {
-            livePartial.textContent = "Waiting for captions...";
-            livePartial.classList.add('placeholder-text');
+            livePartial.textContent = "";
+            hasPartial = false;
         }
+        updatePlaceholder();
         captionsArea.scrollTop = captionsArea.scrollHeight;
     });
 

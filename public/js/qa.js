@@ -10,7 +10,7 @@ import {
 import { db } from "./firebase.js";
 import { escapeHtml } from "./utils.js";
 
-export function listenToQuestions(roomCode, feedEl, onCountChange) {
+export function listenToQuestions(roomCode, feedEl, currentUserUid, onCountChange) {
     const q = query(
         collection(db, "rooms", roomCode, "questions"),
         orderBy("createdAt", "asc")
@@ -27,14 +27,18 @@ export function listenToQuestions(roomCode, feedEl, onCountChange) {
                 ? ts.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
                 : "";
 
+            const isOwn = data.authorUid === currentUserUid;
+
             const msgDiv = document.createElement("div");
-            msgDiv.className = "qa-message";
+            msgDiv.className = `message-row ${isOwn ? 'row-own' : 'row-other'}`;
             msgDiv.innerHTML = `
-        <div class="qa-meta">
-          <span class="qa-author">${escapeHtml(data.author ?? "Anonymous")}</span>
-          <span class="qa-time">${escapeHtml(time)}</span>
+        <div class="qa-message ${isOwn ? 'msg-own' : 'msg-other'}">
+          <div class="qa-meta">
+            <span class="qa-author">${escapeHtml(isOwn ? "You" : (data.author ?? "Anonymous"))}</span>
+            <span class="qa-time">${escapeHtml(time)}</span>
+          </div>
+          <p>${escapeHtml(data.text ?? "")}</p>
         </div>
-        <p>${escapeHtml(data.text ?? "")}</p>
       `;
 
             feedEl.appendChild(msgDiv);

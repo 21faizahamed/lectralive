@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Start Q&A listener
         if (feed) {
-            listenToQuestions(roomCode, feed, (count) => {
+            listenToQuestions(roomCode, feed, user.uid, (count) => {
                 if (activeCount) activeCount.textContent = `${count} Active`;
             });
         }
