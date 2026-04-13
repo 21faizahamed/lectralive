@@ -4,6 +4,8 @@ import { onAuth, logoutUser } from "./auth.js";
 import { getUserProfile } from "./users.js";
 import { listenToQuestions, submitQuestion } from "./qa.js";
 import { listenToCaptions, startBroadcasting, stopBroadcasting } from "./captions.js";
+import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { db } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
@@ -45,6 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (userBadge) userBadge.textContent = `${displayName} (${role})`;
         if (connectionStatus) connectionStatus.textContent = "Live";
+
+        if (role === "student") {
+            try {
+                await setDoc(doc(db, "users", user.uid, "joined_rooms", roomCode), {
+                    roomCode: roomCode,
+                    joinedAt: serverTimestamp()
+                }, { merge: true });
+            } catch (err) {
+                console.error("Failed to log room join", err);
+            }
+        }
 
         // Start Q&A listener
         if (feed) {
