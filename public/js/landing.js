@@ -107,17 +107,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify({ plan, uid })
                 });
                 const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url; // Redirect to Stripe Hosted Checkout
-            } else {
-                throw new Error(data.error || "Failed to create checkout session");
+                if (data.url) {
+                    window.location.href = data.url; // Redirect to Stripe Hosted Checkout
+                } else {
+                    throw new Error(data.error || "Failed to create checkout session");
+                }
+            } catch (error) {
+                console.error("Stripe Error:", error);
+                alert("Unable to securely connect to payment provider. " + error.message);
+                btn.textContent = originalText;
+                btn.disabled = false;
             }
-        } catch (error) {
-            console.error("Stripe Error:", error);
-            alert("Unable to securely connect to payment provider. " + error.message);
-            stripeCheckoutBtn.textContent = "Subscribe Now";
-            stripeCheckoutBtn.disabled = false;
-        }
+        });
     });
 });
 
