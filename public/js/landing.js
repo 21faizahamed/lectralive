@@ -3,6 +3,7 @@ import { initAuthTabs } from "./ui-auth-tabs.js";
 import { showError } from "./utils.js";
 import { registerUser, loginUser, logoutUser, onAuth } from "./auth.js";
 import { getUserProfile } from "./users.js";
+import { auth } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
@@ -83,18 +84,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Stripe Checkout Logic
-    const stripeCheckoutBtn = document.getElementById("stripe-checkout-btn");
-    stripeCheckoutBtn?.addEventListener("click", async () => {
-        // Typically you'd initialize Stripe globally, but here we just redirect to the Checkout session URL returned by backend.
-        stripeCheckoutBtn.textContent = "Loading...";
-        stripeCheckoutBtn.disabled = true;
-        try {
-            const response = await fetch("/api/create-checkout-session", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" }
-            });
-            const data = await response.json();
+    // Stripe Checkout Logic for all pricing plans
+    const stripeCheckoutBtns = document.querySelectorAll(".stripe-checkout-btn");
+    stripeCheckoutBtns.forEach(btn => {
+        btn.addEventListener("click", async () => {
+            if (!auth.currentUser) {
+                alert("Please log in or create an account to upgrade your plan.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const plan = btn.getAttribute("data-plan") || "enterprise";
+            const uid = auth.currentUser.uid;
+            const originalText = btn.textContent;
+            
+            btn.textContent = "Loading...";
+            btn.disabled = true;
+            try {
+                const response = await fetch("/api/create-checkout-session", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ plan, uid })
+                });
+                const data = await response.json();
             if (data.url) {
                 window.location.href = data.url; // Redirect to Stripe Hosted Checkout
             } else {

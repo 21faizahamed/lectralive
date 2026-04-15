@@ -14,6 +14,7 @@ export async function createUserProfile(uid, { email, displayName, role }) {
     email,
     displayName,
     role,
+    plan: "starter",
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });

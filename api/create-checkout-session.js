@@ -8,8 +8,12 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const { plan } = req.body || {};
-
+        const { plan, uid } = req.body || {};
+        
+        if (!uid) {
+            return res.status(401).json({ error: "Missing user authentication." });
+        }
+        
         // Define price IDs for each plan
         const prices = {
             starter: 'price_1TMTf4RMYE0lJteYQwRKGDP9',
@@ -30,6 +34,10 @@ module.exports = async (req, res) => {
                 },
             ],
             mode: 'subscription', // Use 'payment' if this is a one-time setup
+            metadata: {
+                uid: uid,
+                plan: plan || 'enterprise'
+            },
             success_url: `${req.headers.origin}/?success=true`,
             cancel_url: `${req.headers.origin}/?canceled=true`,
         });
