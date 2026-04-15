@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lectralive - Login</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%234f46e5'/><path d='M12 6C13.1046 6 14 6.89543 14 8C14 9.10457 13.1046 10 12 10C10.8954 10 10 9.10457 10 8C10 6.89543 10.8954 6 12 6Z' fill='white'/><path d='M12 11C8.68629 11 6 13.6863 6 17V18H18V17C18 13.6863 15.3137 11 12 11Z' fill='white'/></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="var(--primary)" />
+            <path
+              d="M12 6C13.1046 6 14 6.89543 14 8C14 9.10457 13.1046 10 12 10C10.8954 10 10 9.10457 10 8C10 6.89543 10.8954 6 12 6Z"
+              fill="white" />
+            <path d="M12 11C8.68629 11 6 13.6863 6 17V18H18V17C18 13.6863 15.3137 11 12 11Z" fill="white" />
+          </svg>
+          <span>lectralive</span>
+        </a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="landing-view" class="view active scrollable-view" style="display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 64px - 60px);">
+    <section class="section-demo" id="demo" style="width: 100%; border-top: none; padding-top: 0; background-color: transparent;">
+      <div class="content-wrapper">
+        <div class="landing-container">
+          <!-- Left Hero Section (now a minimal invite) -->
+          <div class="hero">
+            <h2 class="hero-title">
+              Ready to transform your <span class="highlight">classroom?</span>
+            </h2>
+            <p class="hero-subtitle">
+              Create an account or log in to manage your classes.
+            </p>
+          </div>
+
+          <!-- Right Auth Card -->
+          <div class="auth-box">
+            <div class="auth-card">
+              <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login" type="button">
+                  Login
+                </button>
+                <button class="auth-tab" data-tab="register" type="button">
+                  Register
+                </button>
+              </div>
+              <!-- Login Form -->
+              <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="login-email" placeholder="you@school.edu" required />
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" id="login-password" required />
+                </div>
+                <p id="login-error" style="display: none; color: #ef4444; font-size: 0.9rem; margin: 0.5rem 0;"></p>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              </form>
+
+              <!-- Register Form -->
+              <form id="register-form" class="auth-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Role</label>
+                    <select id="register-role" required>
+                      <option value="student">Student</option>
+                      <option value="teacher">Teacher</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Display Name</label>
+                    <input type="text" id="register-displayName" placeholder="John Doe" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="register-email" placeholder="you@school.edu" required />
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" id="register-password" required />
+                </div>
+                <p id="register-error" style="display: none; color: #ef4444; font-size: 0.9rem; margin: 0.5rem 0;"></p>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-bar">
+    <p>© 2026 lectralive. Building inclusive classrooms together.</p>
+  </footer>
+
+  <script type="module" src="js/landing.js"></script>
+</body>
+</html>

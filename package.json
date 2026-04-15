@@ -1,0 +1,11 @@
+{
+  "name": "lectralive-backend",
+  "version": "1.0.0",
+  "description": "Backend API for lectralive.",
+  "scripts": {
+    "start": "node"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

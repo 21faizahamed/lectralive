@@ -17,6 +17,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -63,107 +64,255 @@
   </nav>
 
   <!-- Landing -->
-  <main class="view active" id="landing-view">
-    <div class="landing-container">
-      <!-- Left Hero Section -->
-      <div class="hero">
-        <h1 class="hero-title">
-          Classrooms made <span class="highlight">accessible</span> for
-          everyone.
+  <main class="view active scrollable-view" id="landing-view">
+    <!-- Hero Section -->
+    <section class="section-hero" id="hero">
+      <div class="content-wrapper">
+        <h1 class="display-title">
+          Empowering the Future of <br /><span class="highlight">Accessible Education</span>
         </h1>
-        <p class="hero-subtitle">
-          Live captions, anonymous Q&A, and AI-powered moderation to ensure
+        <p class="subtitle">
+          We break down barriers in learning with live captions, anonymous Q&A, and real-time AI moderation to ensure
           every student can participate with confidence.
         </p>
-
-        <div class="join-box" style="margin-top: 2rem;">
-          <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 80%;">
-            Join thousands of students and educators transforming the way we learn. Create an account or log in to
-            continue.
-          </p>
-        </div>
-
-        <div class="features-badges">
-          <div class="badge">Live Captions</div>
-          <div class="badge">Anonymous Q&A</div>
-          <div class="badge">Inclusive Design</div>
+        <div class="hero-actions">
+          <a href="login.html" class="btn btn-primary btn-large" style="text-decoration: none;">Try Now</a>
+          <a href="#intro" class="btn btn-outline btn-large" style="text-decoration: none; border-color: white">Learn
+            More</a>
         </div>
       </div>
+    </section>
 
-      <!-- Right Auth Card -->
-      <div class="auth-box">
-        <div class="auth-card">
-          <div class="auth-tabs">
-            <button class="auth-tab active" data-tab="login" type="button">
-              Login
-            </button>
-            <button class="auth-tab" data-tab="register" type="button">
-              Register
-            </button>
+    <!-- Who We Are -->
+    <section class="section-who" id="who-we-are">
+      <div class="content-wrapper">
+        <div class="who-grid">
+          <div class="who-text">
+            <h2 class="section-title">Who We Are</h2>
+            <p>At lectralive, we believe every student deserves a voice. Our mission is to build the most inclusive
+              classroom environment imaginable. Founded by passionate educators and technologists, we understand the
+              challenges of modern diverse classrooms and are building the tools to bridge every gap.</p>
           </div>
-          <!-- Login Form -->
-          <form id="login-form" class="auth-form active">
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" id="login-email" placeholder="you@school.edu" required />
+          <div class="who-stats">
+            <div class="stat-card glass-panel">
+              <h3>100k+</h3>
+              <p>Students Empowered</p>
             </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" id="login-password" required />
+            <div class="stat-card glass-panel">
+              <h3>5k+</h3>
+              <p>Active Classrooms</p>
             </div>
-
-            <p id="login-error" style="
-                  display: none;
-                  color: #ef4444;
-                  font-size: 0.9rem;
-                  margin: 0.5rem 0;
-                "></p>
-
-            <button type="submit" class="btn btn-primary btn-block">
-              Sign In
-            </button>
-          </form>
-
-          <!-- Register Form -->
-          <form id="register-form" class="auth-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Role</label>
-                <select id="register-role" required>
-                  <option value="student">Student</option>
-                  <option value="teacher">Teacher</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Display Name</label>
-                <input type="text" id="register-displayName" placeholder="John Doe" required />
-              </div>
+            <div class="stat-card glass-panel">
+              <h3>50+</h3>
+              <p>Supported Languages</p>
             </div>
-
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" id="register-email" placeholder="you@school.edu" required />
-            </div>
-
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" id="register-password" required />
-            </div>
-
-            <p id="register-error" style="
-                  display: none;
-                  color: #ef4444;
-                  font-size: 0.9rem;
-                  margin: 0.5rem 0;
-                "></p>
-
-            <button type="submit" class="btn btn-primary btn-block">
-              Create Account
-            </button>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Intro to Project -->
+    <section class="section-intro" id="intro">
+      <div class="content-wrapper text-center">
+        <h2 class="section-title">Why choose lectralive?</h2>
+        <p class="section-subtitle">Features designed to engage, include, and inspire.</p>
+
+        <div class="features-grid">
+          <div class="feature-card glass-panel">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </div>
+            <h3>Live Captions</h3>
+            <p>Real-time transcription so no student misses a word, greatly beneficial for ESL learners and
+              accessibility.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <h3>Anonymous Q&A</h3>
+            <p>Reduce classroom anxiety. Students can ask questions without fear of judgment from peers.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <h3>AI Moderation</h3>
+            <p>Keep the environment safe and productive. Our AI filters out inappropriate content instantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section-pricing" id="pricing">
+      <div class="content-wrapper">
+        <div class="pricing-header">
+          <h2 class="section-title">Choose the Perfect Plan for You</h2>
+          <p class="section-subtitle">Choose a plan that will help you create inclusive classrooms easily. Suitable for
+            personal projects, teamwork and large-scale learning.</p>
+          <div class="pricing-toggle-wrap">
+            <button class="pricing-toggle active">Monthly</button>
+            <button class="pricing-toggle">Annually</button>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Starter Plan -->
+          <div class="price-card glass-panel">
+            <div class="card-art" style="background-image: url('img/pricing_bg_blue_1776141662523.png');"></div>
+            <div class="card-content">
+              <h3>Starter Plan</h3>
+              <p class="plan-desc">Beginners who want to explore lectralive without any commitment.</p>
+              <div class="price"><span>$18.00</span> <span class="period">/ monthly</span></div>
+              <button class="btn btn-outline btn-block btn-upgrade">Upgrade</button>
+
+              <div class="plan-section">
+                <h4>Plan Limits</h4>
+                <ul>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> 1 classroom, 30 students</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> 120 live minutes / month</li>
+                </ul>
+              </div>
+              <div class="plan-section">
+                <h4>Features</h4>
+                <ul>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Live captions</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Anonymous Q&A</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Basic analytics</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Public classrooms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creator Plan -->
+          <div class="price-card glass-panel">
+            <div class="card-art" style="background-image: url('img/pricing_bg_purple_1776141676011.png');"></div>
+            <div class="card-content">
+              <h3>Creator Plan</h3>
+              <p class="plan-desc">Freelancers or educators that need more flexibility and features.</p>
+              <div class="price"><span>$64.00</span> <span class="period">/ monthly</span></div>
+              <button class="btn btn-outline btn-block btn-upgrade">Upgrade</button>
+
+              <div class="plan-section">
+                <h4>Plan Limits</h4>
+                <ul>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> 5 classrooms, 150 students</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> 360 live minutes / month</li>
+                </ul>
+              </div>
+              <div class="plan-section">
+                <h4>Everything In Starter Plus...</h4>
+                <ul>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> AI-powered moderation</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Exportable transcripts</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Custom fonts</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Private classrooms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="price-card glass-panel card-popular" style="box-shadow: 0 0 25px 5px rgba(16, 185, 129, 0.3); transform: scale(1.02); z-index: 1;">
+            <div class="save-badge" style="background: linear-gradient(135deg, #10b981, #059669);">Enterprise<br/>Focus</div>
+            <div class="card-art" style="background-image: url('img/pricing_bg_green_1776141737139.png');"></div>
+            <div class="card-content">
+              <h3>Enterprise Plan</h3>
+              <p class="plan-desc">Content creators, marketers, and large institutions.</p>
+              <div class="price"><span>$112.00</span> <span class="period">/ monthly</span></div>
+              <button class="btn btn-primary btn-block btn-upgrade popular-btn" id="stripe-checkout-btn"
+                style="background: linear-gradient(135deg, #10b981, #059669); border:none; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);">Subscribe Now</button>
+
+              <div class="plan-section">
+                <h4>Plan Limits</h4>
+                <ul>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Custom no. of classrooms</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Unlimited live minutes</li>
+                </ul>
+              </div>
+              <div class="plan-section">
+                <h4>Everything In Creator Plus...</h4>
+                <ul>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Custom branded portals</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> API access</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> SAML/SSO integration</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Voice cloning</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
   </main>
 
   <footer class="bottom-bar">
@@ -171,6 +320,7 @@
   </footer>
 
 
-    <script type="module" src="js/landing.js"></script>
+  <script type="module" src="js/landing.js"></script>
 </body>
+
 </html>

@@ -82,6 +82,31 @@ document.addEventListener("DOMContentLoaded", () => {
             showError(registerError, friendlyAuthError(err));
         }
     });
+
+    // Stripe Checkout Logic
+    const stripeCheckoutBtn = document.getElementById("stripe-checkout-btn");
+    stripeCheckoutBtn?.addEventListener("click", async () => {
+        // Typically you'd initialize Stripe globally, but here we just redirect to the Checkout session URL returned by backend.
+        stripeCheckoutBtn.textContent = "Loading...";
+        stripeCheckoutBtn.disabled = true;
+        try {
+            const response = await fetch("/api/create-checkout-session", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" }
+            });
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url; // Redirect to Stripe Hosted Checkout
+            } else {
+                throw new Error(data.error || "Failed to create checkout session");
+            }
+        } catch (error) {
+            console.error("Stripe Error:", error);
+            alert("Unable to securely connect to payment provider. " + error.message);
+            stripeCheckoutBtn.textContent = "Subscribe Now";
+            stripeCheckoutBtn.disabled = false;
+        }
+    });
 });
 
 function friendlyAuthError(err) {
