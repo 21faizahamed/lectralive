@@ -38,10 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 // But previously it auto-redirected them if they landed on index.html logged in
                 // We'll leave the auto-redirection block up to you, for now we let it redirect
                 if (window.location.pathname.includes("login.html")) {
+                    window.location.href = "index.html"; // Redirect back to index on successful login
+                }
+                
+                // If they are on index.html, transform the "Try Now" button into a "Dashboard" button
+                const tryBtn = document.getElementById("hero-try-btn");
+                if (tryBtn) {
+                    tryBtn.textContent = "Go to Dashboard";
                     if (profile?.role === "teacher") {
-                        window.location.href = "teacher_dashboard.html";
+                        tryBtn.href = "teacher_dashboard.html";
                     } else {
-                        window.location.href = "student_dashboard.html";
+                        tryBtn.href = "student_dashboard.html";
                     }
                 }
             } catch (err) {
