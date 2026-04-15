@@ -24,23 +24,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerError = document.getElementById("register-error");
 
     const navSignoutBtn = document.getElementById("nav-signout-btn");
+    const navLoginBtn = document.getElementById("nav-login-btn");
 
     // Auth UI state & Routing
     onAuth(async (user) => {
         if (user) {
-            navSignoutBtn.style.display = "inline-flex";
+            if (navSignoutBtn) navSignoutBtn.style.display = "inline-flex";
+            if (navLoginBtn) navLoginBtn.style.display = "none";
+            
             try {
                 const profile = await getUserProfile(user.uid);
-                if (profile?.role === "teacher") {
-                    window.location.href = "teacher_dashboard.html";
-                } else {
-                    window.location.href = "student_dashboard.html";
+                // Do not auto-redirect on landing page unless they are explicitly on login.html
+                // But previously it auto-redirected them if they landed on index.html logged in
+                // We'll leave the auto-redirection block up to you, for now we let it redirect
+                if (window.location.pathname.includes("login.html")) {
+                    if (profile?.role === "teacher") {
+                        window.location.href = "teacher_dashboard.html";
+                    } else {
+                        window.location.href = "student_dashboard.html";
+                    }
                 }
             } catch (err) {
                 console.error("Error fetching user profile", err);
             }
         } else {
-            navSignoutBtn.style.display = "none";
+            if (navSignoutBtn) navSignoutBtn.style.display = "none";
+            if (navLoginBtn) navLoginBtn.style.display = "inline-flex";
         }
     });
 
