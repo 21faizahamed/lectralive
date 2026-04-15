@@ -8,13 +8,24 @@ module.exports = async (req, res) => {
     }
 
     try {
+        const { plan } = req.body || {};
+
+        // Define price IDs for each plan
+        const prices = {
+            starter: 'price_1TMTf4RMYE0lJteYQwRKGDP9',
+            creator: 'price_1TMTfNRMYE0lJteYqKzyO60p',
+            // Example of your already-entered Enterprise ID:
+            enterprise: 'price_1TMTemRMYE0lJteY0jQgIGgr'
+        };
+
+        // Fallback to enterprise if no plan is specified
+        const priceId = prices[plan] || prices.enterprise;
+
         // Create Checkout Sessions from body params
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
-                    // Provide the exact Price ID (for example, price_1234) of the product you want to sell
-                    // TO DO: The user must replace this with the generated Price ID from their Stripe Dashboard.
-                    price: 'price_1TMTemRMYE0lJteY0jQgIGgr',
+                    price: priceId,
                     quantity: 1,
                 },
             ],
