@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (activeCount) activeCount.textContent = `${count} Active`;
             });
         }
-        
+
         // Start Captions listener
         if (captionsArea) {
             listenToCaptions(roomCode, captionsArea);
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (role === "teacher" && broadcastBtn) {
             broadcastBtn.style.display = "flex";
-            
+
             let isBroadcasting = false;
             broadcastBtn.addEventListener("click", async () => {
                 if (!isBroadcasting) {
@@ -133,15 +133,15 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 // Route to AI RAG
                 await submitQuestion(roomCode, `(To AI): ${text}`, authorToShow, user.uid, role);
-                
+
                 try {
-                    const res = await fetch("http://localhost:8000/api/chat", {
+                    const res = await fetch("https://lectralive-api.onrender.com", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ question: text, room_id: roomCode, target: targetVal })
                     });
                     const data = await res.json();
-                    
+
                     if (data.answer) {
                         await submitQuestion(roomCode, data.answer, "LectraLive AI", null, "ai");
                     }
