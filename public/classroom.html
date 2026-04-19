@@ -99,7 +99,11 @@
 
         <div class="qa-input-area">
           <textarea class="qa-textarea" id="qa-input" placeholder="Ask a question..."></textarea>
-          <div class="qa-controls" style="justify-content: flex-end;">
+          <div class="qa-controls" style="justify-content: space-between;">
+            <select id="qa-target" class="btn btn-outline" style="padding: 0.4rem; height: auto;">
+              <option value="ai">Ask AI (RAG)</option>
+              <option value="professor">Ask Professor</option>
+            </select>
             <button class="btn btn-primary submit-btn" id="submit-btn" type="button">Submit</button>
           </div>
         </div>

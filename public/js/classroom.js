@@ -105,6 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
+        if (role === "teacher") {
+            const qaTarget = document.getElementById("qa-target");
+            if (qaTarget) qaTarget.style.display = "none";
+            if (input) input.placeholder = "Send message to class...";
+        }
 
         if (!input || !submitBtn) return;
 
@@ -119,8 +124,32 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!text.trim()) return;
 
             const authorToShow = displayName;
+            const qaTarget = document.getElementById("qa-target");
+            const targetVal = qaTarget ? qaTarget.value : "ai";
 
-            await submitQuestion(roomCode, text, authorToShow, user.uid, role);
+            if (role === "teacher" || targetVal === "professor") {
+                // Route directly to class/professor
+                await submitQuestion(roomCode, text, authorToShow, user.uid, role);
+            } else {
+                // Route to AI RAG
+                await submitQuestion(roomCode, `(To AI): ${text}`, authorToShow, user.uid, role);
+                
+                try {
+                    const res = await fetch("http://localhost:8000/api/chat", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ question: text, room_id: roomCode, target: targetVal })
+                    });
+                    const data = await res.json();
+                    
+                    if (data.answer) {
+                        await submitQuestion(roomCode, data.answer, "LectraLive AI", null, "ai");
+                    }
+                } catch (e) {
+                    console.error("RAG Error:", e);
+                    await submitQuestion(roomCode, "**Server Offline.** Could not reach AI.", "LectraLive AI", null, "ai");
+                }
+            }
 
             input.value = "";
             submitBtn.classList.remove("active");

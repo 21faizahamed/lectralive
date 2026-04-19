@@ -51,6 +51,27 @@ document.addEventListener("DOMContentLoaded", () => {
                         tryBtn.href = "student_dashboard.html";
                     }
                 }
+
+                // Highlight user's currently active plan
+                const currentPlan = profile?.plan || "starter";
+                const checkoutBtns = document.querySelectorAll(".stripe-checkout-btn");
+                if (checkoutBtns.length > 0) {
+                    checkoutBtns.forEach(btn => {
+                        const planStr = btn.getAttribute("data-plan");
+                        const card = btn.closest(".price-card");
+                        if (planStr === currentPlan && card) {
+                            // Visually highlight the current plan
+                            card.style.boxShadow = "0 0 0 4px var(--primary), 0 10px 30px rgba(0,0,0,0.5)";
+                            card.style.transform = "scale(1.05)";
+                            card.style.zIndex = "10";
+                            // Update the button state
+                            btn.textContent = "Current Plan";
+                            btn.disabled = true;
+                            btn.style.opacity = "0.7";
+                            btn.style.cursor = "not-allowed";
+                        }
+                    });
+                }
             } catch (err) {
                 console.error("Error fetching user profile", err);
             }

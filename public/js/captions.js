@@ -164,6 +164,13 @@ export async function startBroadcasting(roomCode) {
                         text: transcript,
                         createdAt: serverTimestamp()
                     });
+                    // Sync RAG
+                    fetch("http://localhost:8000/api/transcript", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ room_id: roomCode, text: transcript })
+                    }).catch(err => console.error("RAG Sync Error:", err));
+                    
                     // Clear partial
                     await setDoc(doc(db, "rooms", roomCode, "live_caption", "current"), { text: "" });
                 } else {
