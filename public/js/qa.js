@@ -22,6 +22,15 @@ export function listenToQuestions(roomCode, feedEl, currentUserUid, onCountChang
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
 
+            // Client-side privacy filtering
+            const isTargetingAI = data.target === "ai" || data.target === "ai_response";
+            if (isTargetingAI) {
+                // Only the person who asked the AI should see the thread
+                if (data.authorUid !== currentUserUid && data.targetUid !== currentUserUid) {
+                    return; // hide from everyone else's feed (and professor)
+                }
+            }
+
             const ts = data.createdAt?.toDate ? data.createdAt.toDate() : null;
             const time = ts
                 ? ts.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
@@ -50,7 +59,7 @@ export function listenToQuestions(roomCode, feedEl, currentUserUid, onCountChang
     });
 }
 
-export async function submitQuestion(roomCode, text, author, authorUid, authorRole) {
+export async function submitQuestion(roomCode, text, author, authorUid, authorRole, target = "all", targetUid = null) {
     const trimmed = text.trim();
     if (!trimmed) return;
 
@@ -59,6 +68,8 @@ export async function submitQuestion(roomCode, text, author, authorUid, authorRo
         author,                 // displayed name ("Anonymous" or displayName)
         authorUid: authorUid ?? null,
         authorRole: authorRole ?? null, // "student" or "teacher"
+        target: target ?? "all",
+        targetUid: targetUid ?? null,
         createdAt: serverTimestamp(),
     });
 }

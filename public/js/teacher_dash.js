@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
             createRoomBtn.disabled = true;
             createRoomBtn.innerText = "Creating...";
 
-            const roomCode = generateRoomCode();
+            let customCode = document.getElementById("custom-room-code")?.value.trim();
+            const roomCode = customCode ? customCode.replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase() : generateRoomCode();
 
             // Create root document for the room in Firestore
             await setDoc(doc(db, "rooms", roomCode), {
