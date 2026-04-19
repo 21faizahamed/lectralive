@@ -165,7 +165,7 @@ export async function startBroadcasting(roomCode) {
                         createdAt: serverTimestamp()
                     });
                     // Sync RAG
-                    fetch("http://localhost:8000/api/transcript", {
+                    fetch("https://ahamed21-lectralive-api.hf.space/api/transcript", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ room_id: roomCode, text: transcript })
