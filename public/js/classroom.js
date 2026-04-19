@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 await submitQuestion(roomCode, `(To AI): ${text}`, authorToShow, user.uid, role);
 
                 try {
-                    const res = await fetch("https://lectralive-api.onrender.com", {
+                    const res = await fetch("https://ahamed21-lectralive-api.hf.space", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ question: text, room_id: roomCode, target: targetVal })
