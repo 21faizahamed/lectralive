@@ -98,12 +98,14 @@
         <div class="qa-feed" id="qa-feed"></div>
 
         <div class="qa-input-area">
-          <textarea class="qa-textarea" id="qa-input" placeholder="Ask a question..."></textarea>
-          <div class="qa-controls" style="justify-content: space-between;">
-            <select id="qa-target" class="btn btn-outline" style="padding: 0.4rem; height: auto;">
-              <option value="ai">Ask AI (RAG)</option>
+          <div style="position: relative;">
+            <textarea class="qa-textarea" id="qa-input" placeholder="Ask a question..." style="padding-right: 120px; width: 100%;"></textarea>
+            <select id="qa-target" class="btn btn-outline" style="position: absolute; right: 8px; top: 8px; padding: 0.3rem 0.5rem; height: auto; font-size: 0.8rem; width: auto; background-color: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main);">
+              <option value="ai">Ask AI</option>
               <option value="professor">Ask Professor</option>
             </select>
+          </div>
+          <div class="qa-controls" style="justify-content: flex-end;">
             <button class="btn btn-primary submit-btn" id="submit-btn" type="button">Submit</button>
           </div>
         </div>
