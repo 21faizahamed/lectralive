@@ -54,8 +54,6 @@ export function listenToQuestions(roomCode, feedEl, currentUserUid, onCountChang
         });
 
         feedEl.scrollTop = feedEl.scrollHeight;
-
-        if (typeof onCountChange === "function") onCountChange(snapshot.size);
     });
 }
 

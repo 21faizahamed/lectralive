@@ -4,7 +4,7 @@ import { onAuth, logoutUser } from "./auth.js";
 import { getUserProfile } from "./users.js";
 import { listenToQuestions, submitQuestion } from "./qa.js";
 import { listenToCaptions, startBroadcasting, stopBroadcasting } from "./captions.js";
-import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { doc, setDoc, deleteDoc, onSnapshot, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,9 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Start Q&A listener
         if (feed) {
-            listenToQuestions(roomCode, feed, user.uid, (count) => {
-                if (activeCount) activeCount.textContent = `${count} Active`;
-            });
+            listenToQuestions(roomCode, feed, user.uid);
         }
 
         // Start Captions listener
@@ -163,6 +161,26 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
                 doSubmit();
+            }
+        });
+
+        // Basic Presence Tracking for accurate "Active" counts
+        const presenceRef = doc(db, "rooms", roomCode, "active_participants", user.uid);
+        try {
+            await setDoc(presenceRef, { uid: user.uid, joinedAt: serverTimestamp() });
+            
+            // Remove presence when closing tab
+            window.addEventListener("beforeunload", () => {
+                deleteDoc(presenceRef);
+            });
+        } catch(err) {
+            console.error("Presence error:", err);
+        }
+
+        // Listen to active participants
+        onSnapshot(collection(db, "rooms", roomCode, "active_participants"), (snap) => {
+            if (activeCount) {
+                activeCount.textContent = `${snap.size} Active`;
             }
         });
     });
