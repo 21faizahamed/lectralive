@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("qa-input");
     const submitBtn = document.getElementById("submit-btn");
     const signoutBtn = document.getElementById("signout-btn");
+    const dashboardBtn = document.getElementById("dashboard-btn");
     const captionsArea = document.getElementById("captions-area");
     const broadcastBtn = document.getElementById("broadcast-btn");
 
@@ -47,6 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (userBadge) userBadge.textContent = `${displayName} (${role})`;
         if (connectionStatus) connectionStatus.textContent = "Live";
+
+        if (dashboardBtn) {
+            dashboardBtn.style.display = "inline-flex";
+            dashboardBtn.addEventListener("click", () => {
+                if (role === "teacher") {
+                    window.location.href = "teacher_dashboard.html";
+                } else {
+                    window.location.href = "student_dashboard.html";
+                }
+            });
+        }
 
         if (role === "student") {
             try {
