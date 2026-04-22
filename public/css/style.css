@@ -998,7 +998,8 @@ section {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 0 !important; /* Fix for .glass-card-dark adding padding and breaking card-art edges */
+    padding: 0 !important;
+    /* Fix for .glass-card-dark adding padding and breaking card-art edges */
 }
 
 .card-popular {
@@ -1270,9 +1271,17 @@ section {
 }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .trusted-by {
