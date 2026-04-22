@@ -15,7 +15,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D197ZHGZ7C"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-D197ZHGZ7C');
@@ -51,7 +51,8 @@
           </svg>
         </button>
 
-        <button class="btn btn-outline" id="dashboard-btn" type="button" style="margin-right: 0.5rem; display: none;">Dashboard</button>
+        <button class="btn btn-outline" id="dashboard-btn" type="button"
+          style="margin-right: 0.5rem; display: none;">Dashboard</button>
         <button class="btn btn-outline" id="signout-btn" type="button">Sign out</button>
       </div>
     </div>
@@ -73,8 +74,15 @@
           </div>
 
           <div class="header-actions" style="display: flex; gap: 1rem; align-items: center;">
-            <button class="btn btn-primary" id="broadcast-btn" type="button" style="display: none; background: #e11d48; border-color: #be123c;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            <button class="btn btn-primary" id="broadcast-btn" type="button"
+              style="display: none; background: #e11d48; border-color: #be123c;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
               Start Broadcast
             </button>
             <button class="btn btn-outline text-size-btn" type="button">
@@ -100,14 +108,17 @@
 
         <div class="qa-input-area">
           <div style="position: relative;">
-            <textarea class="qa-textarea" id="qa-input" placeholder="Ask a question..." style="padding-right: 120px; width: 100%;"></textarea>
-            <select id="qa-target" class="btn btn-outline" style="position: absolute; right: 8px; top: 8px; padding: 0.3rem 0.5rem; height: auto; font-size: 0.8rem; width: auto; background-color: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main);">
+            <textarea class="qa-textarea" id="qa-input" placeholder="Ask a question..."
+              style="padding-right: 120px; width: 100%;"></textarea>
+            <select id="qa-target" class="btn btn-outline"
+              style="position: absolute; right: 8px; top: 8px; padding: 0.3rem 0.5rem; height: auto; font-size: 0.8rem; width: auto; background-color: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main);">
               <option value="ai">Ask AI</option>
               <option value="professor">Ask Professor</option>
             </select>
           </div>
           <div class="qa-controls" style="justify-content: space-between; align-items: center; margin-top: 0.5rem;">
-            <label style="font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; color: var(--text-muted); cursor: pointer;">
+            <label
+              style="font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; color: var(--text-muted); cursor: pointer;">
               <input type="checkbox" id="anon-checkbox"> Send anonymously
             </label>
             <button class="btn btn-primary submit-btn" id="submit-btn" type="button">Submit</button>
