@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         const card = btn.closest(".price-card");
                         if (planStr === currentPlan && card) {
                             // Visually highlight the current plan
-                            card.style.boxShadow = "0 0 0 4px var(--primary), 0 10px 30px rgba(0,0,0,0.5)";
+                            card.style.setProperty("border", "1px solid var(--primary)", "important");
+                            card.style.boxShadow = "0 10px 40px rgba(0,0,0,0.5)";
                             card.style.transform = "scale(1.05)";
                             card.style.zIndex = "10";
                             // Update the button state

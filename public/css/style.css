@@ -998,6 +998,7 @@ section {
     position: relative;
     display: flex;
     flex-direction: column;
+    padding: 0 !important; /* Fix for .glass-card-dark adding padding and breaking card-art edges */
 }
 
 .card-popular {
