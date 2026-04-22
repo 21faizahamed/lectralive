@@ -151,14 +151,23 @@ document.addEventListener("DOMContentLoaded", () => {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ question: text, room_id: roomCode, target: targetVal })
                     });
+                    
+                    if (!res.ok) {
+                        const errText = await res.text();
+                        console.error("API Error Response:", errText);
+                        throw new Error(`Server returned ${res.status}`);
+                    }
+
                     const data = await res.json();
 
                     if (data.answer) {
                         await submitQuestion(roomCode, data.answer, "LectraLive AI", null, "ai", "ai_response", user.uid);
+                    } else if (data.status === "error") {
+                        await submitQuestion(roomCode, `**AI Error:** ${data.message}`, "LectraLive AI", null, "ai", "ai_response", user.uid);
                     }
                 } catch (e) {
                     console.error("RAG Error:", e);
-                    await submitQuestion(roomCode, "**Server Offline.** Could not reach AI.", "LectraLive AI", null, "ai", "ai_response", user.uid);
+                    await submitQuestion(roomCode, "**Server Offline / Error.** Could not reach AI.", "LectraLive AI", null, "ai", "ai_response", user.uid);
                 }
             }
 
