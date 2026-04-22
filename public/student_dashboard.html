@@ -14,11 +14,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D197ZHGZ7C"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-D197ZHGZ7C');
+        gtag('config', 'G-D197ZHGZ7C');
     </script>
 </head>
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="nav-actions">
-                <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
+                <!-- <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
                     <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -55,7 +55,7 @@
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                </button>
+                </button> -->
 
                 <button class="btn btn-outline" type="button" id="nav-signout-btn" style="display: inline-flex">
                     Sign out
@@ -66,8 +66,9 @@
 
     <main class="view active" id="dashboard-view">
         <div class="dashboard-container" style="max-width: 1200px; margin: 3rem auto; padding: 0 2rem; width: 100%;">
-            
-            <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+
+            <div class="dashboard-header"
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
                     <h1 class="hero-title" style="font-size: 2rem; margin-bottom: 0.5rem;">
                         Welcome, <span class="highlight" id="dashboard-name">Student</span>!
@@ -77,9 +78,10 @@
                     </p>
                 </div>
                 <div class="join-box" style="margin: 0; max-width: 400px; flex: 1;">
-                    <input type="text" placeholder="Room Code (e.g. bio-101)" id="room-code-input"
-                        autocomplete="off" style="padding: 0.6rem 1rem;" />
-                    <button class="btn btn-primary join-btn" id="join-btn" type="button" style="padding: 0.6rem 1.5rem;">
+                    <input type="text" placeholder="Room Code (e.g. bio-101)" id="room-code-input" autocomplete="off"
+                        style="padding: 0.6rem 1rem;" />
+                    <button class="btn btn-primary join-btn" id="join-btn" type="button"
+                        style="padding: 0.6rem 1.5rem;">
                         Join
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -92,7 +94,8 @@
 
             <div class="past-classrooms" style="text-align: left;">
                 <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Joined Classrooms</h3>
-                <div id="classrooms-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+                <div id="classrooms-list"
+                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
                     <!-- JS injected rooms -->
                 </div>
             </div>
