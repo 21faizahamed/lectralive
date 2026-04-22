@@ -66,17 +66,23 @@ body {
 
 /* ================= Navbar ================= */
 .navbar {
-    background-color: var(--surface-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 0;
-    position: sticky;
+    background-color: transparent;
+    border: none;
+    padding: 1.5rem 0;
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: none;
     transition: background-color var(--transition), border-color var(--transition);
 }
 
 .nav-container {
-    max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
