@@ -78,46 +78,114 @@
   <!-- Landing -->
   <main class="view active scrollable-view" id="landing-view">
     <!-- Hero Section -->
-    <section class="section-hero" id="hero">
+    <section class="section-hero planet-glow-bg" id="hero"
+      style="text-align: center; padding-top: 8rem; min-height: 90vh;">
+      <div class="planet-horizon"></div>
       <div class="content-wrapper">
-        <h1 class="display-title">
-          Empowering the Future of <br /><span class="highlight">Accessible Education</span>
+        <div class="pill-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>BUILT WITH AI FOR EDUCATION</span>
+        </div>
+        <h1 class="display-title" style="margin-bottom: 1.5rem; font-weight: 800;">
+          The Premier <br /> Accessible <span class="highlight">Classroom.</span>
         </h1>
-        <p class="subtitle">
+        <p class="subtitle" style="max-width: 600px; margin: 0 auto 3rem auto;">
           We break down barriers in learning with live captions, anonymous Q&A, and real-time AI moderation to ensure
           every student can participate with confidence.
         </p>
-        <div class="hero-actions">
-          <a href="login.html" id="hero-try-btn" class="btn btn-primary btn-large" style="text-decoration: none;">Try
-            Now</a>
-          <a href="#intro" class="btn btn-outline btn-large" style="text-decoration: none; border-color: white">Learn
-            More</a>
+
+        <!-- <div class="hero-centerpiece">
+          <img src="img/hero-icon.png" alt="3D Education Icon" />
+        </div> -->
+
+        <div class="hero-actions" style="justify-content: center; margin-top: 2rem; position: relative; z-index: 2;">
+          <a href="login.html" id="hero-try-btn" class="btn btn-primary btn-large"
+            style="text-decoration: none; border-radius: 50px; padding: 1rem 2rem;">Start Learning <svg width="16"
+              height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="margin-left: 0.5rem;">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg></a>
+          <a href="#intro" class="btn btn-outline btn-large"
+            style="text-decoration: none; border-color: rgba(255,255,255,0.2); border-radius: 50px; padding: 1rem 2rem;">Features</a>
+        </div>
+
+        <div class="trusted-by">
+          <p class="trusted-by-text">Trusted by</p>
+          <div class="trusted-logos">
+            <h4 style="color: var(--text-muted); font-weight: 600;">STANFORD</h4>
+            <h4 style="color: var(--text-muted); font-weight: 600;">MIT</h4>
+            <h4 style="color: var(--text-muted); font-weight: 600;">HARVARD</h4>
+            <h4 style="color: var(--text-muted); font-weight: 600;">UC BERKELEY</h4>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Who We Are -->
+    <!-- Proof of Work (Who We Are) -->
     <section class="section-who" id="who-we-are">
-      <div class="content-wrapper">
-        <div class="who-grid">
-          <div class="who-text">
-            <h2 class="section-title">Who We Are</h2>
-            <p>At lectralive, we believe every student deserves a voice. Our mission is to build the most inclusive
-              classroom environment imaginable. Founded by passionate educators and technologists, we understand the
-              challenges of modern diverse classrooms and are building the tools to bridge every gap.</p>
+      <div class="content-wrapper text-center">
+        <h2 class="section-title" style="margin-bottom: 1rem;">Proof of Impact</h2>
+        <p class="section-subtitle" style="margin-bottom: 4rem;">We build for students, verify with teachers, and prove
+          it with data.</p>
+
+        <div class="proof-of-work-grid" style="text-align: left; max-width: 900px; margin: 0 auto;">
+          <div class="glass-card-dark pow-card">
+            <div>
+              <div class="pow-stat">100k+</div>
+              <p class="pow-label">Students Empowered</p>
+            </div>
           </div>
-          <div class="who-stats">
-            <div class="stat-card glass-panel">
-              <h3>100k+</h3>
-              <p>Students Empowered</p>
+          <div class="glass-card-dark pow-card">
+            <div>
+              <div class="pow-stat">5k+</div>
+              <p class="pow-label">Active Classrooms</p>
             </div>
-            <div class="stat-card glass-panel">
-              <h3>5k+</h3>
-              <p>Active Classrooms</p>
+          </div>
+          <div class="glass-card-dark pow-card large"
+            style="background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.2), transparent 70%), rgba(15, 15, 20, 0.6);">
+            <div>
+              <div class="pow-stat">50+</div>
+              <p class="pow-label">Supported Languages mapped globally</p>
             </div>
-            <div class="stat-card glass-panel">
-              <h3>50+</h3>
-              <p>Supported Languages</p>
+            <div style="margin-top: 2rem;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+              </svg>
+            </div>
+          </div>
+          <div class="glass-card-dark pow-card">
+            <div>
+              <div class="pow-stat">99%</div>
+              <p class="pow-label">Accessibility Score</p>
+            </div>
+          </div>
+          <div class="glass-card-dark pow-card">
+            <div>
+              <div class="pow-stat">24/7</div>
+              <p class="pow-label">AI Availability</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
+          <p
+            style="font-size: 1.25rem; font-weight: 500; line-height: 1.6; color: var(--text-main); font-style: italic;">
+            "From transcript accuracy to real-time moderation, we handle the intangibles that tech usually misses. This
+            is AI-led education, supercharged by human educators, not replaced by it."
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+            <div
+              style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+              L</div>
+            <div style="font-size: 0.9rem;">
+              <strong style="color: var(--text-main);">LectraLive Team</strong><br />
+              <span style="color: var(--text-muted);">Founders</span>
             </div>
           </div>
         </div>
@@ -127,42 +195,55 @@
     <!-- Intro to Project -->
     <section class="section-intro" id="intro">
       <div class="content-wrapper text-center">
-        <h2 class="section-title">Why choose lectralive?</h2>
-        <p class="section-subtitle">Features designed to engage, include, and inspire.</p>
+        <h2 class="section-title">Architecting the Learning Layer of the Digital Future</h2>
 
-        <div class="features-grid">
-          <div class="feature-card glass-panel">
-            <div class="feature-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="auth-tabs"
+          style="max-width: 250px; margin: 2rem auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <button class="auth-tab active"
+            style="font-size: 0.8rem; border-radius: 50px; padding: 0.4rem 1rem;">Students</button>
+          <button class="auth-tab"
+            style="font-size: 0.8rem; border-radius: 50px; padding: 0.4rem 1rem; color: var(--text-muted); background: transparent;">Teachers</button>
+        </div>
+
+        <div class="features-grid" style="text-align: left; margin-top: 3rem;">
+          <div class="glass-card-dark">
+            <div style="margin-bottom: 1.5rem; color: var(--primary);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
                 <line x1="12" y1="19" x2="12" y2="23"></line>
                 <line x1="8" y1="23" x2="16" y2="23"></line>
               </svg>
             </div>
-            <h3>Live Captions</h3>
-            <p>Real-time transcription so no student misses a word, greatly beneficial for ESL learners and
-              accessibility.</p>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main);">Live Captions</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);">Real-time transcription so no
+              student misses a word, greatly beneficial for ESL learners and accessibility. Every lecture is
+              automatically transcribed with high precision.</p>
           </div>
-          <div class="feature-card glass-panel">
-            <div class="feature-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="glass-card-dark"
+            style="background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.2);">
+            <div style="margin-bottom: 1.5rem; color: var(--primary);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
               </svg>
             </div>
-            <h3>Anonymous Q&A</h3>
-            <p>Reduce classroom anxiety. Students can ask questions without fear of judgment from peers.</p>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main);">Anonymous Q&A</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Reduce classroom anxiety.
+              Students can ask questions without fear of judgment from peers. Our Web3-inspired privacy layer ensures
+              complete anonymity when requested.</p>
           </div>
-          <div class="feature-card glass-panel">
-            <div class="feature-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="glass-card-dark">
+            <div style="margin-bottom: 1.5rem; color: var(--primary);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
               </svg>
             </div>
-            <h3>AI Moderation</h3>
-            <p>Keep the environment safe and productive. Our AI filters out inappropriate content instantly.</p>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main);">AI Moderation</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);">Keep the environment safe and
+              productive. Our AI filters out inappropriate content instantly, ensuring a positive space for everyone.
+            </p>
           </div>
         </div>
       </div>
@@ -183,7 +264,7 @@
 
         <div class="pricing-grid">
           <!-- Starter Plan -->
-          <div class="price-card glass-panel">
+          <div class="price-card glass-card-dark">
             <div class="card-art" style="background-image: url('img/pricing_bg_blue_1776141662523.png');"></div>
             <div class="card-content">
               <h3>Starter Plan</h3>
@@ -230,7 +311,7 @@
           </div>
 
           <!-- Creator Plan -->
-          <div class="price-card glass-panel">
+          <div class="price-card glass-card-dark">
             <div class="card-art" style="background-image: url('img/pricing_bg_purple_1776141676011.png');"></div>
             <div class="card-content">
               <h3>Creator Plan</h3>
@@ -277,7 +358,7 @@
           </div>
 
           <!-- Enterprise Plan -->
-          <div class="price-card glass-panel card-popular"
+          <div class="price-card glass-card-dark card-popular"
             style="box-shadow: 0 0 25px 5px rgba(16, 185, 129, 0.3); transform: scale(1.02); z-index: 1;">
             <div class="save-badge" style="background: linear-gradient(135deg, #10b981, #059669);">Enterprise<br />Focus
             </div>
