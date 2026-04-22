@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "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")
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "API_KEY")
 
 client = OpenAI(
     api_key=GROQ_API_KEY,
