@@ -1,10 +1,84 @@
-
 # LectraLive
 
-## Project Overview
+**Live Website:** https://www.lectralive.online/  
+**GitHub Repository:** https://github.com/21faizahamed/lectralive  
 
-LectraLive is a web-based platform developed as part of the MGIS 360 course project. The purpose of this milestone was to establish the live infrastructure of the web application, including domain registration, hosting configuration, SSL setup, and GitHub version control integration. The frontend is built using HTML, CSS, and JavaScript, while Firebase is used for backend services such as authentication and database management. The website is deployed using Vercel and connected to a custom domain, forming a foundation for future development.
+## Overview
 
-## Setup Notes
+LectraLive is an AI-powered real-time lecture assistant designed to make classroom learning more interactive, accessible, and effective. The platform combines live speech-to-text transcription with AI-powered question-and-answer support, allowing students to follow lectures in real time and ask questions without interrupting the flow of teaching.
 
-To set up the project locally, clone the repository using `git clone https://github.com/yourusername/lectralive.git` and navigate into the project directory with `cd lectralive`. Open `index.html` in a browser, or use a development server such as Live Server for real-time updates. Firebase is used to handle authentication and database services, and its configuration should be added to the appropriate configuration file while ensuring sensitive credentials are not committed to the repository. The project is deployed on Vercel, which automatically handles HTTPS/SSL provisioning, and is connected to a custom domain. Any push to the main branch triggers a new deployment, providing an accessible live version of the application.
+The goal of LectraLive is to help students stay engaged during lectures, especially in large classroom environments where students may hesitate to ask questions. By offering live transcription, anonymous interaction, and AI-generated explanations, LectraLive helps bridge the gap between teaching and understanding.
+
+## Problem
+
+Many students struggle to keep up during live lectures. This can happen because of fast-paced instruction, language barriers, accessibility needs, unfamiliar terminology, or hesitation to ask questions in front of classmates.
+
+Existing tools such as lecture recordings, captions, and discussion boards are helpful, but many of them are passive. They usually support students after the lecture instead of helping them during the lecture.
+
+LectraLive addresses this problem by giving students real-time support while the lecture is happening.
+
+## Features
+
+- Live lecture interface
+- Real-time speech-to-text transcription
+- AI-powered question-and-answer support
+- Anonymous student question submission
+- Professional landing page
+- Pricing/payment flow
+- Payment-ready setup in test mode
+- User authentication
+- Responsive design for desktop and mobile
+- Privacy Policy and Terms pages
+- Deployed live website
+
+## Target Users
+
+LectraLive is designed for:
+
+- Students in large lecture-based courses
+- Professors who want to improve engagement
+- Universities and colleges
+- Online education platforms
+- Corporate training programs
+- Accessibility and student support offices
+
+## Business Model
+
+LectraLive is designed as a B2B SaaS product. The primary customers would be institutions such as universities, colleges, and training organizations.
+
+Potential revenue streams include:
+
+- Per-course subscriptions
+- Per-student pricing
+- Department-level plans
+- University-wide enterprise licensing
+- Freemium access for small classes
+- Premium AI features such as lecture summaries, study guides, multilingual support, and instructor analytics
+
+## Tech Stack
+
+The current project uses:
+
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend / Database:** Firebase Authentication and Firestore
+- **Hosting:** Vercel
+- **Domain:** Hostinger
+- **Version Control:** GitHub
+- **Payments:** Test-mode payment flow
+- **Analytics:** Google Analytics 4 / Google Tag Manager
+
+## Project Structure
+
+```txt
+lectralive/
+│
+├── public/
+│   └── Static assets
+│
+├── src/
+│   └── Main application files
+│
+├── index.html
+├── package.json
+├── README.md
+└── other project files
